@@ -168,12 +168,14 @@ export default {
   methods: {
     ChangeModal() {   
       this.NewProductCodeModel();
+      this.IsDuplicate = false
       this.isshow = !this.isshow;      
       // window.location.reload();
+      //console.log("OpenO")
     },
     SaveData() {
       if (this.ValidateInput()) return false;
-      console.log("model", this.productCodeModel);
+      //console.log("model", this.productCodeModel);
       axios
         .post(URLSaveData, this.productCodeModel, {
           headers: {
@@ -182,10 +184,11 @@ export default {
         })
         .then((res) => {
           if (res.data.Success) {
-            console.log("resData", res);
+            //console.log("resData", res);
             this.$_toast_Noti("success", "success", "Save Success");
             this.isSave = !this.isSave;
             this.isshow = !this.isshow;
+            this.NewProductCodeModel();
           } else {
             this.$_toast_Noti("success", "success", res);
           }
@@ -291,9 +294,6 @@ export default {
       this.productCodeModel.PalletizerPattern = "";
       this.productCodeModel.UpdateDate = "";
     },
-  },
-  mounted() {
-    this.NewProductCodeModel();
   },
 };
 </script>
