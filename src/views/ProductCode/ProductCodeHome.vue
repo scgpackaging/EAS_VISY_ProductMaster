@@ -306,8 +306,12 @@ export default {
           },
         })
         .then((res) => {
-          this.ProductData = res.data.data.data;
-          //console.log("search", this.ProductData);
+          var resultObj = res.data.data.data.map((obj) => ({
+            ...obj,
+            editMode: false,
+          }));
+
+          this.ProductData = resultObj;
           this.IsLoading = false;
         })
         .catch((error) => {
