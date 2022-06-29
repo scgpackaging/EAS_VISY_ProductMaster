@@ -12,7 +12,7 @@ const state = {
   sidebarShow: 'responsive',
   sidebarMinimize: false,
   darkMode: false,
-  URL: "http://10.50.55.15/misapi",
+  URL: "https://10.50.55.15/misapi",
   ApiKey:xApiKey
   //URL : "http://10.28.58.39:8559",
 }
