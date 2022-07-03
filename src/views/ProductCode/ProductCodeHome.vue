@@ -31,12 +31,14 @@
               color="success"
               @click="IsProductCodeModalOpen = !IsProductCodeModalOpen"
               ><CIcon class="m-0 mb-1" name="cil-plus" />Add New</CButton
+            >    <CButton
+              color="info" @click="onExport">Export Excel</CButton
             >
             <CDataTable
               :items="ProductData"
               :fields="fields"
               items-per-page-select
-              :items-per-page="10"
+              :items-per-page="20"
               hover
               sorter
               pagination
@@ -219,9 +221,11 @@
   </div>
 </template>
 <script>
+
 import axios from "axios";
 import store from "../../store";
 import ProductCodeModal from "../ProductCode/ProductCodeModal.vue";
+var XLSX = require("xlsx");
 
 var URLGetAll =
   store.getters.URL + "/api/ProductSpecification/Get-All-Product-Code";
@@ -373,6 +377,16 @@ export default {
         this.GetAll();
       }
     },
+    onExport() {
+const today = new Date();
+const date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const timestamp = date + ' ' + time;
+     const dataWS = XLSX.utils.json_to_sheet(this.ProductData)
+      const wb = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(wb, dataWS)
+      XLSX.writeFile(wb,'ProductMasterExport'+timestamp+'.xlsx')
+    }
   },
   mounted() {
     this.GetAll();
