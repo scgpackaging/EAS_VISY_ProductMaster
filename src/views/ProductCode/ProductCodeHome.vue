@@ -193,13 +193,11 @@
               <template #PalletizerPattern="data">
                 <td class="text-left text-nowrap px-3">
                   <template v-if="data.item.editMode">
-                    <CInput
-                      type="text"
-                      v-model.trim="data.item.PalletizerPattern"
-                      class="edit-mode-input mb-0"
-                      required
-                    >
-                    </CInput>
+                      <CSelect
+          label=""
+          :options="['Cup-2','Cup-3','JAR','Lid-1','Lid-2']"
+          :value.sync="data.item.PalletizerPattern"
+        />
                   </template>
                   <template v-else>
                     <template v-if="data.item.PalletizerPattern">

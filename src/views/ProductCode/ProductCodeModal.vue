@@ -84,12 +84,12 @@
             </CRow>
             <CRow>
               <CCol sm="3">
-                <CInput
-                  label="Palletizer Pattern"
-                  v-model="productCodeModel.PalletizerPattern"
-                  required
-                  invalid-feedback="Please provide a required input."
-                ></CInput>
+                      <CSelect
+          label="Palletizer Pattern"
+          required
+          :options="['','Cup-2','Cup-3','JAR','Lid-1','Lid-2']"
+          :value.sync="productCodeModel.PalletizerPattern"
+        />
               </CCol>
             </CRow>
           </CForm>
